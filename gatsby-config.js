@@ -1,14 +1,51 @@
+require('dotenv').config({
+  path: '.env',
+})
+
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Default Starter`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
-    author: `@gatsbyjs`,
-    siteUrl: `https://gatsbystarterdefaultsource.gatsbyjs.io/`,
+    // サイトのメタデータを記述していい
+    title: `Shopifyフロント with Gatsby + Typescript`,
+    description: `ShopifyのフロントエンドをGatsbyとTypescriptで構築する`,
+    siteUrl: ``,
+    author: '@okita_kamegoro', // TODO: ここは後で考える
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-image`,
-    `gatsby-plugin-typegen`,
+    'gatsby-plugin-styled-components',
+    'gatsby-optional-chaining',
+    {
+      resolve: 'gatsby-plugin-typegen',
+      options: {
+        emitSchema: {
+          'src/__generated__/gatsby-introspection.json': true,
+        },
+      },
+    },
+    {
+      resolve: 'gatsby-source-shopify',
+      options: {
+        password: process.env.SHOPIFY_ADMIN_PASSWORD,
+        storeUrl: process.env.SHOPIFY_STORE_URL,
+        shopifyConnections: ['collections'],
+      },
+    },
+    {
+      resolve: 'gatsby-plugin-google-fonts',
+      options: {
+        fonts: [
+          /* eslint-disable no-useless-escape */ // FIXME:敗北の一手
+          'open sans:400',
+          'open sans:400i',
+          'open sans:700',
+          'open sans:700i',
+          'open sans:800',
+          'open sans:800i',
+          /* eslint-enable no-useless-escape */
+        ],
+      },
+    },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
