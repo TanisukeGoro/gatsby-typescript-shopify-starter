@@ -1,9 +1,9 @@
 {
   "name": "gatsby-starter-default",
   "private": true,
-  "description": "A simple starter to get up and developing quickly with Gatsby",
-  "version": "0.1.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "description": "A simple starter for Shopify Storefront to get up and developing quickly with Gatsby + Typescript",
+  "version": "0.0.1",
+  "author": "Abe Keishi <keisi3824@gmail.com>",
   "dependencies": {
     "gatsby": "^3.11.1",
     "gatsby-optional-chaining": "^1.0.1",
@@ -33,6 +33,7 @@
     "@types/react": "^17.0.17",
     "@types/react-dom": "^17.0.9",
     "@types/react-helmet": "^6.1.2",
+    "@types/shopify-buy": "^2.10.7",
     "@types/styled-components": "^5.1.12",
     "babel-plugin-styled-components": "^1.13.2",
     "eslint": "^7.32.0",
@@ -57,9 +58,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/gatsbyjs/gatsby-starter-default"
+    "url": "https://github.com/TanisukeGoro/gatsby-typescript-shopify-starter"
   },
   "bugs": {
-    "url": "https://github.com/gatsbyjs/gatsby/issues"
+    "url": "https://github.com/TanisukeGoro/gatsby-typescript-shopify-starter/issues"
   }
 }

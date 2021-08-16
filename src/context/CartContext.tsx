@@ -1,9 +1,9 @@
-import React, { useState } from 'react'
+import React, { ReactNode, useState } from 'react'
 import Client from 'shopify-buy'
 
 const client = Client.buildClient({
-  domain: `${process.env.GATSBY_SHOP_NAME}.myshopify.com`,
-  storefrontAccessToken: process.env.GATSBY_ACCESS_TOKEN,
+  domain: `${process.env.SHOPIFY_STORE_URL}`,
+  storefrontAccessToken: `${process.env.SHOPIFY_ACCESS_TOKEN}`, // stringに強制キャスト
 })
 
 const defaultState = {
@@ -13,12 +13,15 @@ const defaultState = {
 const CartContext = React.createContext(defaultState)
 export default CartContext
 
-export function CartContextProvider({ children }) {
-  const [checkout, setCheckout] = useState(
-    JSON.parse(
-      typeof window !== 'undefined' ? localStorage.getItem('checkout') : null
-    )
+interface CartContextProviderProps {
+  children: ReactNode
+}
+
+export function CartContextProvider({ children }: CartContextProviderProps) {
+  const parsedCheckout = JSON.parse(
+    typeof window !== 'undefined' ? `${localStorage.getItem('checkout')}` : ''
   )
+  const [checkout, setCheckout] = useState<Client.Cart>(parsedCheckout)
 
   const [successfulOrder, setSuccessfulOrder] = useState(null)
   const checkoutId = checkout?.id
@@ -26,7 +29,9 @@ export function CartContextProvider({ children }) {
   React.useEffect(() => {
     const getCheckout = async () => {
       if (checkoutId && typeof window !== 'undefined') {
-        const fetchedCheckout = await client.checkout.fetch(checkoutId)
+        const fetchedCheckout: Client.Cart = await client.checkout.fetch(
+          checkoutId
+        )
         if (fetchedCheckout?.completedAt) {
           localStorage.removeItem('checkout')
           setCheckout(null)
@@ -41,7 +46,7 @@ export function CartContextProvider({ children }) {
     getCheckout()
   }, [setCheckout, setSuccessfulOrder, checkoutId])
 
-  async function getProductById(productId) {
+  async function getProductById(productId: string) {
     const product = await client.product.fetch(productId)
     return product
   }

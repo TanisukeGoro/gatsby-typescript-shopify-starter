@@ -2185,6 +2185,11 @@
   resolved "https://registry.npmjs.org/@types/scheduler/-/scheduler-0.16.2.tgz"
   integrity sha512-hppQEBDmlwhFAXKJX2KnWLYu5yMfi91yazPb2l+lbJiwW+wdo1gNeRA+3RgNSO39WYX2euey41KEwnqesU2Jew==
 
+"@types/shopify-buy@^2.10.7":
+  version "2.10.7"
+  resolved "https://registry.yarnpkg.com/@types/shopify-buy/-/shopify-buy-2.10.7.tgz#4d99efabaa93dfdd73258f5eb09a222aac7982be"
+  integrity sha512-eyKtip8e+B1X7RM0+OIPedpVlUEYNh79e3ljXtDO1JZNJn+9CT7Jyl4k8WejUHTbAmj7G5Nc182oWg1+PHc4qw==
+
 "@types/styled-components@^5.1.12":
   version "5.1.12"
   resolved "https://registry.yarnpkg.com/@types/styled-components/-/styled-components-5.1.12.tgz#1a3679942746adecd1e736bfc47aea2c938a7d9a"
